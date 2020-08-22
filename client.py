@@ -3,8 +3,9 @@ import time
 from datetime import datetime
 
 s = socket.socket() #create a socket object
-host = socket.gethostname() #Host i.p
-port = 12397 #Reserve a port for your service
+# host = socket.gethostname() #Host i.p
+host = 'localhost'
+port = 9999 #Reserve a port for your service
 
 s.connect((host, port))
 

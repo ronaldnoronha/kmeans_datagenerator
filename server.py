@@ -1,6 +1,4 @@
 from sklearn.datasets import make_blobs
-import matplotlib.pyplot as plt
-import time
 from datetime import datetime
 import socket #import socket module
 
@@ -19,8 +17,10 @@ def create_data(n_samples, n_features, centers, std):
 features, target = create_data(100,3,8,0.65)
 
 s = socket.socket() #Create a socket object
-host = socket.gethostname() #Get the local machine name
-port = 12397 # Reserve a port for your service
+host = 'localhost'
+# host = socket.gethostbyname_ex(socket.gethostname()) #Get the local machine name
+print("Host: ", socket.get)
+port = 9999 # Reserve a port for your service
 s.bind((host,port)) #Bind to the port
 
 s.listen() #Wait for the client connection
@@ -32,24 +32,3 @@ while True:
         print(f'Send: {message!r}')
         c.send(message.encode())
     c.close()
-
-
-# import socket
-# import time
-#
-# host = socket.gethostname()  # Standard loopback interface address (localhost)
-# port = 12397        # Port to listen on (non-privileged ports are > 1023)
-#
-# with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-#     s.bind((host, port))
-#     s.listen()
-#     conn, addr = s.accept()
-#     with conn:
-#         print('Connected by', addr)
-#         conn.send(b'Hello World')
-#         while True:
-#             time.sleep(1)
-#             # data =  conn.recv(1024)
-#             # if not data:
-#             #     break
-#             conn.sendall(b'Hello World')
